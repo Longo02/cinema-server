@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema({
     },
     description: String, 
     year: Date, 
-    duration: int, 
+    duration: BigInt, 
     genre: String, 
     isAvaible: {
         type: Boolean,
@@ -16,6 +16,6 @@ const movieSchema = new mongoose.Schema({
     nextAvaibleDate: Date
 })
 
-const Movie = mongoose.Model('Movie', movieSchema)
+const Movie = mongoose.model('Movie', movieSchema)
 
 module.exports = Movie;

@@ -1,4 +1,4 @@
-const Movie = require('models/movies.js')
+const Movie = require('../models/movies')
 
 
 
