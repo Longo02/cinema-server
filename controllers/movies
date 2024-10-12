@@ -11,8 +11,22 @@ let getAllMovies = async(req, res) => {
     }
 }
 
+let postMovie = async(req, res) => {
+    const { title, description, year, duration, genre, isAvailable, nextAvailableDate } = req.body
+    try {
+        const movie = new Movie({ title, description, year, duration, genre, isAvailable, nextAvailableDate})
+
+        const savedMovie = await movie.save();
+        res.status(201).json(savedMovie);
+    }catch(error){
+        console.error(error)
+        res.status(500).json({ message: 'error al cargar en la base de datos'})
+    }
+}
+
 
 
 module.exports = {
-    getAllMovies
+    getAllMovies,
+    postMovie
 }
