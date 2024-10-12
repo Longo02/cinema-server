@@ -1,3 +1,6 @@
+import router from '../configs/routes';
+import Movie from '../models/movies';
+
 const Movie = require('../models/movies')
 
 
@@ -24,9 +27,20 @@ let postMovie = async(req, res) => {
     }
 }
 
+let updateMovie = async (req, res) => {
+    const{id} = req.params;
+    const update = req.body
+    try{
+        const movie = await Movie.findByIdAndUpdate(id , update, {new : true})
+    }catch(error){
+        console.error(error)
+        res.status(500).json({ message: 'error al cargar en la base de datos'})
+}};
 
 
 module.exports = {
     getAllMovies,
-    postMovie
+    postMovie,
+    updateMovie,
+    
 }
