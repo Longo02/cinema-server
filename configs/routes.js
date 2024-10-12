@@ -1,11 +1,24 @@
 const express = require('express');
+const { getAllMovies } = require('../controllers')
+
 const router = express.Router();
-const app = express()
 
 
-app.get('/movies/', function(req, res) {
-    res.send("hola")
-})
+router.get('/movies', getAllMovies)
 
 
-app.listen(3000)
+router.post('/movies/', async(req, res) => {
+    let {title, description, year, duration, genre, isAvaible, nextAvaibleDate} = req.body
+    const moviePayload = {title, description, year, duration, genre, isAvaible, nextAvaibleDate}
+    try{
+        const movie = new Movie(moviePayload)
+        await movie.save()
+        res.json(movie)
+    } catch (error){
+        res.status(500).json({ message: 'error al cargar en la base de datos'})
+    }
+});
+
+
+
+module.exports = router;

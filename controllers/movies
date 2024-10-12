@@ -1,0 +1,18 @@
+const Movie = require('models/movies.js')
+
+
+
+let getAllMovies = async(req, res) => {
+    try {
+        const movies = await Movie.find();
+        res.status(200).json(movies);
+    }catch(error){
+        res.status(500).json({ message: 'error retrieven objects from db', error})
+    }
+}
+
+
+
+module.exports = {
+    getAllMovies
+}
