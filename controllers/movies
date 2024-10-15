@@ -53,8 +53,8 @@ let updateMovie = async (req, res) => {
 let deleteMovie = async (req, res) =>{
     const{id} = req.params.id;
     await Movie.findByIdAndDelete(req.params.id);
-    res.send('Pelicula eliminada');
-}
+    res.send(200);
+};
 
 module.exports = {
     getAllMovies,
