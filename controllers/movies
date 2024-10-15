@@ -50,10 +50,16 @@ let updateMovie = async (req, res) => {
         res.status(500).json({ message: 'error al cargar en la base de datos'})
 }};
 
+let deleteMovie = async (req, res) =>{
+    const{id} = req.params.id;
+    await Movie.findByIdAndDelete(req.params.id);
+    res.send('Pelicula eliminada');
+}
 
 module.exports = {
     getAllMovies,
     postMovie,
     updateMovie,
+    deleteMovie, 
     
 }
