@@ -59,9 +59,10 @@ let deleteMovie = async (req, res) =>{
 
 let filterGenre = async (req, res) => {
     const genre = req.query.genre;
+    const year = req.query.year;
     try {
         console.log(req.params);
-        const movies = await Movie.find({ genre });
+        const movies = await Movie.find({ genre, year });
         res.status(200).json(movies);
     } catch (error) {
         console.error(error);
