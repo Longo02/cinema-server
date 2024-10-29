@@ -58,14 +58,14 @@ let deleteMovie = async (req, res) =>{
 };
 
 let filterGenre = async (req, res) => {
-    const genre = req.params.genre;
+    const genre = req.query.genre;
     try {
         console.log(req.params);
         const movies = await Movie.find({ genre });
         res.status(200).json(movies);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'No se pudo encontrar el género', error });
+        res.status(500).json({ message: 'No se pudo encontrar la pelicula con el parametro especificado', error });
     }
 };
 

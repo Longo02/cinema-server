@@ -8,7 +8,7 @@ router.get('/movies', getAllMovies);
 router.post('/movies', postMovie);
 router.put('/movie/:id', updateMovie);
 router.delete("/movie/:id", deleteMovie);
-router.get("/movie/:genre", filterGenre ) ;
+router.get("/movie/GetBy", filterGenre ) ;
 
 //router.getBy('/movie/:', getBy);
 //router.delete('/movie/:id', deleteMovie);
