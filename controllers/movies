@@ -1,3 +1,4 @@
+
 const Movie = require('../models/movies')
 
 const validateUpdater = (data) => {
@@ -56,10 +57,27 @@ let deleteMovie = async (req, res) =>{
     res.send(200);
 };
 
+let filterGenre = async (req, res) => {
+    const {genre} = req.params.genre;
+    try {
+        // Tomamos el género de los parámetros de la ruta.
+        console.log(req.params)
+         // Filtro basado en el género.
+        const movies = await Movie.find({ "genre": genre });
+        res.status(200).json(movies);
+    }catch(error){
+        console.error(error);
+        res.status(500).json({ message: 'No se pudo encontrar el género', error });
+    }
+};
+
+;
+
 module.exports = {
     getAllMovies,
     postMovie,
     updateMovie,
     deleteMovie, 
+    filterGenre
     
 }
